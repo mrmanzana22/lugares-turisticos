@@ -70,6 +70,12 @@
       overflow: hidden;
       display: grid;
       grid-template-columns: 1fr;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    article:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
     }
 
     article img {
