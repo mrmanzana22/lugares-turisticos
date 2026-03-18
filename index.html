@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lugares Turísticos del Mundo</title>
+  <meta name="description" content="Conoce cinco destinos turísticos emblemáticos del mundo: Cartagena de Indias, Machu Picchu, Santorini, Tokio y Madrid.">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --color-primario: #1a3a5c;
+      --color-secundario: #c0392b;
+      --color-acento: #f39c12;
+      --color-fondo: #f4f6f8;
+      --color-texto: #2c3e50;
+      --color-texto-claro: #7f8c8d;
+      --fuente-titulo: 'Georgia', serif;
+      --fuente-cuerpo: 'Arial', sans-serif;
+      --sombra: 0 4px 16px rgba(0,0,0,0.12);
+      --radio-borde: 12px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--fuente-cuerpo);
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--color-primario) 0%, #2980b9 100%);
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+      border-bottom: 4px solid var(--color-acento);
+    }
+
+    header h1 {
+      font-family: var(--fuente-titulo);
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+    }
+
+    nav {
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.25rem;
+      padding: 0.6rem 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--color-primario);
+      font-size: 0.85rem;
+      font-weight: bold;
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      border: 1.5px solid var(--color-primario);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav a:hover {
+      background: var(--color-primario);
+      color: white;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--color-acento);
+      color: white;
+      font-size: 0.78rem;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      margin: 1rem 0 0 1.5rem;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    section {
+      display: block;
+    }
+
+    article {
+      background: white;
+      border-radius: var(--radio-borde);
+      box-shadow: var(--sombra);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    article:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+    }
+
+    article img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    article:hover img {
+      transform: scale(1.04);
+    }
+
+    article h2 {
+      font-family: var(--fuente-titulo);
+      font-size: 1.8rem;
+      color: var(--color-primario);
+      padding: 1.2rem 1.5rem 0.4rem;
+      border-left: 5px solid var(--color-acento);
+      margin-left: 1.5rem;
+    }
+
+    .info {
+      padding: 0.8rem 1.5rem 1.5rem;
+    }
+
+    .descripcion {
+      font-size: 0.97rem;
+      color: var(--color-texto);
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+
+    .ubicacion {
+      font-size: 0.9rem;
+      color: var(--color-texto-claro);
+      background: var(--color-fondo);
+      border-radius: 6px;
+      padding: 0.5rem 0.8rem;
+      display: inline-block;
+    }
+
+    footer {
+      background: var(--color-primario);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 1.8rem 1rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    @media (min-width: 700px) {
+      article {
+        grid-template-columns: 340px 1fr;
+        grid-template-rows: auto auto 1fr;
+      }
+
+      article img {
+        grid-column: 1;
+        grid-row: 1 / 4;
+        height: 100%;
+        min-height: 260px;
+      }
+
+      .badge {
+        grid-column: 2;
+        grid-row: 1;
+        margin-top: 1.2rem;
+      }
+
+      article h2 {
+        grid-column: 2;
+        grid-row: 2;
+        align-self: center;
+      }
+
+      .info {
+        grid-column: 2;
+        grid-row: 3;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Destinos Turísticos del Mundo</h1>
+    <p>Descubre los lugares más fascinantes y emblemáticos del planeta</p>
+  </header>
+
+  <nav aria-label="Navegación de destinos">
+    <ul>
+      <li><a href="#cartagena">Cartagena de Indias</a></li>
+      <li><a href="#machu-picchu">Machu Picchu</a></li>
+      <li><a href="#santorini">Santorini</a></li>
+      <li><a href="#tokio">Tokio</a></li>
+      <li><a href="#madrid">Madrid</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="cartagena">
+      <article>
+        <span class="badge">1</span>
+        <h2>Cartagena de Indias</h2>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Cartagena_de_Indias_desde_el_cerro_La_Popa.jpg/1280px-Cartagena_de_Indias_desde_el_cerro_La_Popa.jpg"
+          alt="Vista panorámica de Cartagena de Indias desde el cerro La Popa"
+        >
+        <div class="info">
+          <p class="descripcion">
+            Ciudad amurallada colonial en la costa caribe de Colombia, fundada en 1533 por Pedro de Heredia.
+            Sus imponentes murallas, fortalezas y coloridas calles del Centro Histórico le valieron el
+            reconocimiento como Patrimonio de la Humanidad por la UNESCO en 1984. Es uno de los destinos
+            turísticos más visitados de América Latina, famosa por su arquitectura colonial, su cultura
+            vibrante y sus playas caribeñas.
+          </p>
+          <p class="ubicacion">
+            <strong>Ubicación:</strong> Costa Caribe, Colombia
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section id="machu-picchu">
+      <article>
+        <span class="badge">2</span>
+        <h2>Machu Picchu</h2>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/1280px-Machu_Picchu%2C_Peru.jpg"
+          alt="Vista aérea de la ciudadela inca de Machu Picchu en los Andes peruanos"
+        >
+        <div class="info">
+          <p class="descripcion">
+            Antigua ciudadela inca del siglo XV situada en las montañas de los Andes, a 2430 metros sobre
+            el nivel del mar. Construida durante el apogeo del Imperio Inca, fue abandonada y permaneció
+            desconocida para el mundo occidental hasta que el explorador Hiram Bingham la redescubrió en
+            1911. Declarada Patrimonio de la Humanidad por la UNESCO y elegida como una de las Nuevas
+            Siete Maravillas del Mundo en 2007.
+          </p>
+          <p class="ubicacion">
+            <strong>Ubicación:</strong> Cusco, Perú
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section id="santorini">
+      <article>
+        <span class="badge">3</span>
+        <h2>Santorini</h2>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Oia%2C_Santorini_HDR.jpg/1280px-Oia%2C_Santorini_HDR.jpg"
+          alt="Vista del pueblo de Oia en Santorini con sus casas blancas y cúpulas azules"
+        >
+        <div class="info">
+          <p class="descripcion">
+            Isla volcánica griega famosa por sus icónicas casas blancas con techos azules y sus
+            impresionantes atardeceres sobre el mar Egeo. Formada por una erupción volcánica masiva
+            alrededor del 1600 a.C., Santorini posee una de las calderas más grandes del mundo. El
+            pueblo de Oia, con sus callejuelas serpenteantes y vistas al mar, es considerado uno de
+            los más románticos y fotografiados del planeta.
+          </p>
+          <p class="ubicacion">
+            <strong>Ubicación:</strong> Islas Cícladas, Grecia
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section id="tokio">
+      <article>
+        <span class="badge">4</span>
+        <h2>Tokio</h2>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg/1280px-Skyscrapers_of_Shinjuku_2009_January.jpg"
+          alt="Rascacielos del distrito de Shinjuku en Tokio, Japón"
+        >
+        <div class="info">
+          <p class="descripcion">
+            Capital de Japón y una de las ciudades más pobladas del mundo, con más de 37 millones de
+            habitantes en su área metropolitana. Tokio combina a la perfección la tradición milenaria
+            con la tecnología más avanzada del planeta. Templos sintoístas y budistas conviven con
+            rascacielos futuristas, mercados de pescado centenarios con restaurantes de alta cocina
+            y jardines zen con neones de neón. Fue sede de los Juegos Olímpicos en 1964 y 2020.
+          </p>
+          <p class="ubicacion">
+            <strong>Ubicación:</strong> Región de Kantō, Japón
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section id="madrid">
+      <article>
+        <span class="badge">5</span>
+        <h2>Madrid</h2>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Palacio_de_Comunicaciones_-_07.jpg/1280px-Palacio_de_Comunicaciones_-_07.jpg"
+          alt="Palacio de Cibeles en Madrid, emblemático edificio neoclásico de la capital española"
+        >
+        <div class="info">
+          <p class="descripcion">
+            Capital de España y una de las ciudades más dinámicas de Europa, fundada como villa en el
+            siglo IX. Madrid es conocida por albergar museos de clase mundial como el Museo del Prado,
+            el Museo Reina Sofía y el Museo Thyssen-Bornemisza, que conforman el llamado "Triángulo del
+            Arte". Su vibrante vida nocturna, su rica gastronomía, sus plazas históricas como la Puerta
+            del Sol y la Plaza Mayor, y su rica herencia artística la convierten en un referente cultural
+            de primer orden a nivel mundial.
+          </p>
+          <p class="ubicacion">
+            <strong>Ubicación:</strong> Centro de España
+          </p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Trabajo académico &mdash; Destinos Turísticos del Mundo</p>
+    <p>Universidad de la Costa &bull; 2025</p>
+  </footer>
+</body>
+</html>
